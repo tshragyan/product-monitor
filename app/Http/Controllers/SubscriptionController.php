@@ -52,7 +52,6 @@ class SubscriptionController extends Controller
                 }
 
                 $subscriptionService->create($user, $product);
-                $monitoringQueueService->create($product->id);
             }
         }
 

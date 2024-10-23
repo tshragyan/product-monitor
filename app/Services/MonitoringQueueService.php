@@ -26,12 +26,9 @@ class MonitoringQueueService
         return $data;
     }
 
-    public function create(int $productId): void
+    public function getByProductId(int $productId): MonitoringQueue
     {
-        $monitoringQueue = new MonitoringQueue();
-        $monitoringQueue->product_id = $productId;
-        $monitoringQueue->status = MonitoringQueue::STATUS_PENDING;
-        $monitoringQueue->save();
+        return MonitoringQueue::where('product_id', $productId)->first();
     }
 
     public function getQueuesForMonitor()

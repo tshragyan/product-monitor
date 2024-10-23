@@ -23,7 +23,6 @@ class OlxHelper
             $response = $client->request('GET', $url);
             $html = $response->getBody()->getContents();
         } catch (\Throwable $e) {
-            die('a');
             return null;
         }
 

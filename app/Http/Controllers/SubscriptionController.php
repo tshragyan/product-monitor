@@ -30,10 +30,10 @@ class SubscriptionController extends Controller
             $responseMessage = 'We sent activation email to your address, please check your email for verifying';
         } else {
 
-//            if (!$user->is_active) {
-//                $responseMessage = 'We sent activation email to your address, please check your email for verifying';
-//                $status = 400;
-//            }
+            if (!$user->is_active) {
+                $responseMessage = 'We sent activation email to your address, please check your email for verifying';
+                $status = 400;
+            }
 
             if (!OlxHelper::isRightDomain($validatedData['url'])) {
                 $responseMessage = 'Incorrect url';

@@ -24,17 +24,17 @@ class ProductService
         return $product;
     }
 
-    public function IsProductPage($url)
-    {
-
-    }
-
     public function getProductsForMonitoring()
     {
         $now = Carbon::now()->subMinutes(5)->timestamp;
+        $data = [];
 
-        return Product::whereNull('monitored_at')
+        Product::whereNull('monitored_at')
             ->orWhere('monitored_at', '<', $now)
-            ->get();
+            ->chunk(200, function($products) use (&$data) {
+                $data = array_merge($data, $products->toArray());
+            });
+
+        return $data;
     }
 }

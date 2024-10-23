@@ -35,7 +35,7 @@ class MonitorProductPrice extends Command
 
 
         foreach ($products as $product) {
-           $monitoringQueueService->create($product->id);
+           $monitoringQueueService->create($product['id']);
         }
 
         $queues = $monitoringQueueService->getQueuesForMonitor();
